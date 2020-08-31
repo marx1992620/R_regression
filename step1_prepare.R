@@ -1,6 +1,6 @@
 # prepare environment
 setwd("e:/r_work/car_predict")
-pack = c("C50","tree","rpart","randomForest","GGally","modeldata","dplyr","sqldf","ggplot2", "GGally","ggfortify","e1071","vcd","jsonlite","mice")
+pack = c("C50","tree","rpart","randomForest","GGally","modeldata","dplyr","sqldf","ggplot2", "GGally","ggfortify","e1071","vcd","jsonlite","mice","nortest")
 for(i in pack){install.packages(i)}
 sapply(pack,FUN = library,character.only=T)
 search() # check packages
