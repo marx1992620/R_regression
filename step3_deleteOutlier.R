@@ -15,15 +15,17 @@ cvm.test(res)
 ad.test(res)
 
 # QQPLOT check residuals
+plot(absres)
+hist(res)
+hist(absres)
+boxplot(res)
+boxplot(absres)
 ggplot(res)
 ggplot(absres)
 autoplot(res)
 autoplot(absres)
 
 # check residual IQR sd
-boxplot(res)
-boxplot(absres)
-
 quantile(res)
 IQR(res)
 s1=sd(res)
