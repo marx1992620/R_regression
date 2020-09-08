@@ -25,6 +25,13 @@ ggplot(absres)
 autoplot(res)
 autoplot(absres)
 
+h=hist(res,col="red")
+xfit=seq(min(res),max(res),length=40)
+yfit=dnorm(xfit,mean=mean(res),sd=sd(res))
+yfit=yfit*diff(h$mids[1:2])*length(res)
+lines(xfit,yfit,col="blue",lwd=2)
+box()
+
 # check residual IQR sd
 quantile(res)
 IQR(res)
