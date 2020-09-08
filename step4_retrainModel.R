@@ -19,29 +19,43 @@ data.tree=rpart(price ~ year+cc+people+power+ABS+tcs+sys+ss+brand+type+
                   gas,data=train2)
 data.tree$variable.importance
 # trainMAPE
-y=data$price[test2.index]
+y=newdata$price[-test2.index]
 yhat=predict(data.tree,newdata=train2,type="vector")
 train.MAPE=mean(abs(y-yhat)/y)
 train.MAPE
 # testMAPE
-y=data$price[test2.index]
+y=newdata$price[test2.index]
 yhat=predict(data.tree,newdata=test2,type="vector")
 test.MAPE=mean(abs(y-yhat)/y)
 test.MAPE
 
-# wider prediction with absolute residuals standerd deviation
+# check residual IQR sd
+quantile(res)
+IQR(res)
+s1=sd(res)
+s1
+quantile(absres)
+IQR(absres)
+s2=sd(absres)
+s2
+
+# wider prediction with absolute residuals standard deviation
 s=s2
 ynew=y
-yy=cbind(res,s,ynew)
+yy=cbind(absres,s,ynew)
 yy=tbl_df(yy)
 
 # new testMape
-yy$ynew=yy$res-yy$s
+yy$ynew=yy$absres-yy$s
 yy$ynew[yy$ynew<0]=0
 test.MAPE=mean(yy$ynew/y)
 test.MAPE
 
 # new predictModel 
-lmtrain=lm(formula=price ~ gas+sys+year+safe_bag+auto_chair+window+cc+power+brand+type,data=newdata) # Regression
-data.tree=rpart(price ~ year+cc+people+power+ABS+tcs+sys+ss+brand+type+ # CART
+# Regression
+lmtrain=lm(formula=price ~ gas+sys+year+safe_bag+auto_chair+window+cc+power+brand+type,data=newdata)
+summary(lmtrain)
+# CART
+data.tree=rpart(price ~ year+cc+people+power+ABS+tcs+sys+ss+brand+type+
                   gas,data=newdata)
+data.tree$variable.importance
