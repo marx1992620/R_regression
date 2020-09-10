@@ -26,14 +26,16 @@ xgb.params = list(
   # col的抽樣比例，越高表示每棵樹使用的col越多，會增加每棵小樹的複雜度
   colsample_bytree = 0.5,                    
   # row的抽樣比例，越高表示每棵樹使用的col越多，會增加每棵小樹的複雜度
-  subsample = 0.5,                      
-  booster = "gbtree",
+  subsample = 0.5,
+  # gbtree(樹)或gblinear(線性函式)
+  booster = "gblinear",
   # 樹的最大深度，越高表示模型可以長得越深，模型複雜度越高
   max_depth = 15,           
   # [0,1]boosting會增加被分錯的資料權重，而此參數是讓權重不會增加的那麼快，因此越大會讓模型愈保守
   eta = 0.1,
   # 或用"mae"也可以
-  eval_metric = "rmse",                      
+  eval_metric = "rmse",
+  # reg:linear(回歸線性) multi:softmax(多分類問題) reg:logistic(邏輯回歸)
   objective = "reg:linear",
   nthread = 3,
   # [0,無限大]越大，模型會越保守，相對的模型複雜度比較低
