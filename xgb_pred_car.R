@@ -30,13 +30,13 @@ xgb.params = list(
   booster = "gbtree",
   # 樹的最大深度，越高表示模型可以長得越深，模型複雜度越高
   max_depth = 15,           
-  # boosting會增加被分錯的資料權重，而此參數是讓權重不會增加的那麼快，因此越大會讓模型愈保守
+  # [0,1]boosting會增加被分錯的資料權重，而此參數是讓權重不會增加的那麼快，因此越大會讓模型愈保守
   eta = 0.1,
   # 或用"mae"也可以
   eval_metric = "rmse",                      
   objective = "reg:linear",
   nthread = 3,
-  # 越大，模型會越保守，相對的模型複雜度比較低
+  # [0,無限大]越大，模型會越保守，相對的模型複雜度比較低
   gamma = 0)
 
 # 使用xgb.cv()，tune 出最佳的決策樹數量
@@ -66,7 +66,7 @@ xgb.model = xgb.train(paras = xgb.params,
                       nrounds = best.nrounds) 
 
 # 畫出 xgb 的所有決策樹
-xgb.plot.tree(model = xgb.model) 
+#　xgb.plot.tree(model = xgb.model) 
 
 # 預測
 xgb_y = predict(xgb.model, dtest)
