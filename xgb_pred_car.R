@@ -62,7 +62,7 @@ legend("topright", pch=1, col = c("red", "blue"),
 best.nrounds = cv.model$best_iteration 
 best.nrounds
 
-# 4. 用xgb.train()建立模型
+# 用xgb.train()建立模型
 xgb.model = xgb.train(paras = xgb.params, 
                       data = dtrain,
                       nrounds = best.nrounds) 
