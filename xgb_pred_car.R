@@ -74,5 +74,7 @@ xgb.model = xgb.train(paras = xgb.params,
 xgb_y = predict(xgb.model, dtest)
 
 # MAPE
-MAPE = mean(abs(xgb_y - test$price)/test$price) 
+res = xgb_y - test$price
+MAPE = mean(abs(res)/test$price) 
 MAPE
+
