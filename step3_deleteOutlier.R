@@ -15,15 +15,15 @@ cvm.test(res)
 ad.test(res)
 
 # QQPLOT check residuals
-plot(absres)
+plot(lmtrain)
+ggplot(lmtrain)
+autoplot(lmtrain)
+
+plot(res,y)
 hist(res)
 hist(absres)
 boxplot(res)
 boxplot(absres)
-ggplot(res)
-ggplot(absres)
-autoplot(res)
-autoplot(absres)
 
 h=hist(res,col="red")
 xfit=seq(min(res),max(res),length=40)
